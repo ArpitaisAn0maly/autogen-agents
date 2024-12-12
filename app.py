@@ -5,12 +5,12 @@ from autogen import AssistantAgent, UserProxyAgent
 # setup page title and description
 st.set_page_config(page_title="AutoGen Chat app", page_icon="🤖", layout="wide")
 
-st.markdown("Adapted from [this example](https://github.com/sugarforever/autogen-streamlit)")
+
 st.markdown(
-    "This is a demo of AutoGen chat agents. You can use it to chat with OpenAI's GPT-3 and GPT-4 models. They are able to execute commands, answer questions, and even write code."
+    "Welcome to the world of Agents. You can use it to chat with AOAI Models. Your wish is my command."
 )
-st.markdown("An example a question you can ask is: 'How is the S&P 500 doing today? Summarize the news for me.'")
-st.markdown("Start by getting an API key from OpenAI. You can get one [here](https://openai.com/pricing).")
+st.markdown("An example a question you can ask is: 'How is the stock price of Microsoft Today? Summarize the news for me.'")
+st.markdown("Start by getting your AOAI Model details")
 
 
 class TrackableAssistantAgent(AssistantAgent):
@@ -46,10 +46,10 @@ selected_key = None
 # setup sidebar: models to choose from and API key input
 with st.sidebar:
     st.header("OpenAI Configuration")
-    selected_model = st.selectbox("Model", ["gpt-3.5-turbo", "gpt-4-1106-preview"], index=1)
+    selected_model = st.selectbox("Model", ["gpt4mini", "gpt4o"], index=1)
     st.markdown("Press enter to save key")
     st.markdown(
-        "For more information about the models, see [here](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)."
+        "For more information about the models, see [here](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=python-secure%2Cglobal-standard%2Cstandard-chat-completions)."
     )
     selected_key = st.text_input("API Key", type="password")
 
