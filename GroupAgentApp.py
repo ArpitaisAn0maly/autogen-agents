@@ -50,11 +50,11 @@ if selected_key and selected_model and api_base_url:
         human_input_mode="TERMINATE",
     )
     coder = autogen.AssistantAgent(name="Coder", llm_config=llm_config)
-    pdm = autogen.AssistantAgent(name="Product_manager", system_message="Creative in software product ideas.", llm_config=llm_config)
-    pjm = autogen.AssistantAgent(name="Project_manager", system_message="I need everyone in my team to work faster", llm_config=llm_config)
+    pdm = autogen.AssistantAgent(name="Product_manager", system_message="As a product manager, I focus on delivering valuable and innovative products. My goal is to align the team on customer needs, ensure effective collaboration across departments, and drive product strategy and roadmap execution.", llm_config=llm_config)
+    pjm = autogen.AssistantAgent(name="Project_manager", system_message="As a project manager, I need everyone in my team to work faster and meet deadlines efficiently. Prioritize tasks and keep the workflow smooth.", llm_config=llm_config)
 
     # Initialize GroupChat and Manager
-    groupchat = autogen.GroupChat(agents=[user_proxy, coder, pdm, pjm], messages=[], max_round=12)
+    groupchat = autogen.GroupChat(agents=[user_proxy,coder,pdm,pjm], messages=[], max_round=12)
     manager = autogen.GroupChatManager(groupchat=groupchat, llm_config=llm_config)
 
     # Main container for chat
