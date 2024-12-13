@@ -4,6 +4,7 @@ import autogen
 from autogen import AssistantAgent, UserProxyAgent
 from openai import AzureOpenAI
 from autogen.coding import LocalCommandLineCodeExecutor
+import numpy as np
 
 
 import os
