@@ -3,7 +3,7 @@ import asyncio
 import autogen
 from autogen import AssistantAgent, UserProxyAgent
 from openai import AzureOpenAI
-# from autogen.coding import LocalCommandLineCodeExecutor
+from autogen.coding import LocalCommandLineCodeExecutor
 
 import os
 os.environ["AUTOGEN_USE_DOCKER"] = "False"  # Disable Docker usage
@@ -78,7 +78,9 @@ with st.container():
             name="user",
             human_input_mode="NEVER", 
             llm_config=llm_config,
-            code_execution_config=False,
+            # code_execution_config=False,
+            code_execution_config={
+                "executor": LocalCommandLineCodeExecutor(work_dir="coding")
             max_consecutive_auto_reply=10,
             is_termination_msg=lambda x: x.get("content", "").rstrip().endswith("TERMINATE"))
 
@@ -95,4 +97,8 @@ with st.container():
 
         # Run the asynchronous function within the event loop
         loop.run_until_complete(initiate_chat())
+
+        # Display response in the chat
+        with st.chat_message("assistant"):
+            st.markdown("Here is the assistant's response.")
        
