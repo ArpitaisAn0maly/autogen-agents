@@ -77,9 +77,14 @@ if selected_key and selected_model and api_base_url:
             # Update the messages after the chat response
             chat_messages = groupchat.messages  # Get the updated messages from the group chat
 
-            # Print the structure of messages to check the format (for debugging)
-            st.write("Response from Group Chat:")
-            st.write(chat_messages)
+            # Display all the chat messages with role and name
+            for msg in chat_messages:
+                role = msg['role']
+                name = msg['name']
+                content = msg['content']
+
+                # Display message with role, name, and content
+                st.write(f"**{name} ({role}):** {content}")
            
 
         # Run the asynchronous function within the event loop
