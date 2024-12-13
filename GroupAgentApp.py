@@ -77,14 +77,13 @@ if selected_key and selected_model and api_base_url:
             # Update the messages after the chat response
             chat_messages = groupchat.messages  # Get the updated messages from the group chat
 
-            # Display all the chat messages with role and name
             for msg in chat_messages:
                 role = msg['role']
-                name = msg['name']
                 content = msg['content']
 
-                # Display message with role, name, and content
-                st.write(f"**{name} ({role}):** {content}")
+                # Display message with role and content clearly
+                st.markdown(f"### **{role} says:**")
+                st.write(f"    {content}")
            
 
         # Run the asynchronous function within the event loop
