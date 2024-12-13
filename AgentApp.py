@@ -113,33 +113,33 @@ with st.container():
                 message=user_input,
             )
 
-        # Run the asynchronous function within the event loop
-        loop.run_until_complete(initiate_chat())
+     
 
         # Check if the input contains the word "chart" or related terms
-        if "chart" in user_input.lower() or "graph" in user_input.lower():
-            # Ask the assistant to generate a chart based on the user's input
-            response = await assistant.a_generate_response(f"Please generate a chart based on the following request: {user_input}")
-
-            # Display the assistant's generated code
-            with st.chat_message("assistant"):
-                st.markdown(f"Assistant's generated code:\n{response['content']}")
-
-            # Execute the generated code to create the chart
-            try:
-                # Ensure that the assistant's response is executable Python code
-                exec(response['content'])
-
-                # Display the generated chart in Streamlit
-                st.pyplot(fig)
-            except Exception as e:
-                st.error(f"An error occurred while executing the chart code: {e}")
-        
-        else:
-            # Display response in the chat if not a chart request
-            with st.chat_message("assistant"):
-                st.markdown("Here is the assistant's response.")
-
+            if "chart" in user_input.lower() or "graph" in user_input.lower():
+                # Ask the assistant to generate a chart based on the user's input
+                response = await assistant.a_generate_response(f"Please generate a chart based on the following request: {user_input}")
+    
+                # Display the assistant's generated code
+                with st.chat_message("assistant"):
+                    st.markdown(f"Assistant's generated code:\n{response['content']}")
+    
+                # Execute the generated code to create the chart
+                try:
+                    # Ensure that the assistant's response is executable Python code
+                    exec(response['content'])
+    
+                    # Display the generated chart in Streamlit
+                    st.pyplot(fig)
+                except Exception as e:
+                    st.error(f"An error occurred while executing the chart code: {e}")
+            
+            else:
+                # Display response in the chat if not a chart request
+                with st.chat_message("assistant"):
+                    st.markdown("Here is the assistant's response.")
+           # Run the asynchronous function within the event loop
+        loop.run_until_complete(initiate_chat())
         
         #  # If the input contains the word "chart", generate and display the chart
         #  # Check if the input contains the word "chart" or related terms
