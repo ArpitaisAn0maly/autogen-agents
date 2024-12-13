@@ -50,8 +50,8 @@ if selected_key and selected_model and api_base_url:
         human_input_mode="TERMINATE",
     )
     coder = autogen.AssistantAgent(name="Coder", llm_config=llm_config)
-    pm = autogen.AssistantAgent(name="Product_manager", system_message="Creative in software product ideas.", llm_config=llm_config)
-    pjm = autogen.AssistantAgent(name="Project_manager", system_message="I need everyone in my team to work faster", llm_config=llm_config)
+    pm = autogen.AssistantAgent(name="Product manager", system_message="Creative in software product ideas.", llm_config=llm_config)
+    pjm = autogen.AssistantAgent(name="Project manager", system_message="I need everyone in my team to work faster", llm_config=llm_config)
 
     # Initialize GroupChat and Manager
     groupchat = autogen.GroupChat(agents=[user_proxy, coder, pm, pjm], messages=[], max_round=12)
