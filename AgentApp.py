@@ -4,6 +4,8 @@ import autogen
 from autogen import AssistantAgent, UserProxyAgent
 from openai import AzureOpenAI
 from autogen.coding import LocalCommandLineCodeExecutor
+import matplotlib.pyplot as plt
+import pandas as pd
 import numpy as np
 
 
