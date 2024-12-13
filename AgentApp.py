@@ -12,6 +12,19 @@ st.markdown(
 st.markdown("An example question you can ask is: 'How is the stock price of Microsoft today? Summarize the news for me.'")
 st.markdown("Start by getting your AOAI Model details")
 
+class TrackableAssistantAgent(AssistantAgent):
+    def _process_received_message(self, message, sender, silent):
+        with st.chat_message(sender.name):
+            st.markdown(message)
+        return super()._process_received_message(message, sender, silent)
+
+
+class TrackableUserProxyAgent(UserProxyAgent):
+    def _process_received_message(self, message, sender, silent):
+        with st.chat_message(sender.name):
+            st.markdown(message)
+        return super()._process_received_message(message, sender, silent)
+
 # add placeholders for selected model, key, and base URL
 selected_model = None
 selected_key = None
