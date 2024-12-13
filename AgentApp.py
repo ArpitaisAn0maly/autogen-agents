@@ -91,13 +91,6 @@ with st.container():
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
 
-         # Function to convert chart to base64
-        def get_image_base64(fig):
-            img_bytes = io.BytesIO()
-            fig.savefig(img_bytes, format='PNG')
-            img_bytes.seek(0)
-            img_base64 = base64.b64encode(img_bytes.read()).decode('utf-8')
-            return img_base64
         
         # Define function to initiate chat
         
@@ -108,15 +101,7 @@ with st.container():
              # Display assistant's response in the chat
             with st.chat_message("assistant"):
                 st.markdown(response)
-                
-             # If the assistant generates a chart, display it
-            if 'chart' in response:  # Assuming the assistant returns a key 'chart' if it generates one
-                chart_data = response['chart']
-
-                # Convert chart data to base64 (assuming it's a Matplotlib figure)
-                if isinstance(chart_data, plt.Figure):
-                    img_base64 = get_image_base64(chart_data)
-                    st.image(f"data:image/png;base64,{img_base64}", caption="Generated Chart", use_column_width=True)
+           
 
         # Run the asynchronous function within the event loop
         loop.run_until_complete(initiate_chat())
