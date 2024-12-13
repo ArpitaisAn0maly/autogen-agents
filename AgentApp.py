@@ -91,76 +91,35 @@ with st.container():
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
 
-        # Define an asynchronous function
+         # Function to convert chart to base64
+        def get_image_base64(fig):
+            img_bytes = io.BytesIO()
+            fig.savefig(img_bytes, format='PNG')
+            img_bytes.seek(0)
+            img_base64 = base64.b64encode(img_bytes.read()).decode('utf-8')
+            return img_base64
+        
+        # Define function to initiate chat
+        
         async def initiate_chat():
-            await user_proxy.a_initiate_chat(
-                assistant,
-                message=user_input,
-            )
+            # Simulate the chat interaction, assistant generates a chart
+            message = await assistant.chat(user_input)
+
+             # Display assistant's response in the chat
+            with st.chat_message("assistant"):
+                st.markdown(response)
+                
+             # If the assistant generates a chart, display it
+            if 'chart' in response:  # Assuming the assistant returns a key 'chart' if it generates one
+                chart_data = response['chart']
+
+                # Convert chart data to base64 (assuming it's a Matplotlib figure)
+                if isinstance(chart_data, plt.Figure):
+                    img_base64 = get_image_base64(chart_data)
+                    st.image(f"data:image/png;base64,{img_base64}", caption="Generated Chart", use_column_width=True)
 
         # Run the asynchronous function within the event loop
         loop.run_until_complete(initiate_chat())
-
-        # # Display response in the chat
-        # with st.chat_message("assistant"):
-        #     st.markdown("Here is the assistant's response.")
-
+      
         
-        # Define an asynchronous function
-        async def initiate_chat():
-            await user_proxy.a_initiate_chat(
-                assistant,
-                message=user_input,
-            )
-
-     
-
-        # Check if the input contains the word "chart" or related terms
-            if "chart" in user_input.lower() or "graph" in user_input.lower():
-                # Ask the assistant to generate a chart based on the user's input
-                response = await assistant.a_generate_reply(f"Please generate a chart based on the following request: {user_input}")
-    
-                # Display the assistant's generated code
-                with st.chat_message("assistant"):
-                    st.markdown(f"Assistant's generated code:\n{response['content']}")
-    
-                # Execute the generated code to create the chart
-                try:
-                    # Ensure that the assistant's response is executable Python code
-                    exec(response['content'])
-    
-                    # Display the generated chart in Streamlit
-                    st.pyplot(fig)
-                except Exception as e:
-                    st.error(f"An error occurred while executing the chart code: {e}")
-            
-            else:
-                # Display response in the chat if not a chart request
-                with st.chat_message("assistant"):
-                    st.markdown("Here is the assistant's response.")
-           # Run the asynchronous function within the event loop
-        loop.run_until_complete(initiate_chat())
         
-        #  # If the input contains the word "chart", generate and display the chart
-        #  # Check if the input contains the word "chart" or related terms
-        # if "chart" in user_input.lower() or "graph" in user_input.lower():
-        #     # Ask the assistant to generate a chart based on the user's input
-        #     response = await assistant.a_generate_response(f"Please generate a chart based on the following request: {user_input}")
-
-        #     # Display the assistant's generated code
-        #     with st.chat_message("assistant"):
-        #         st.markdown(f"Assistant's generated code:\n{response['content']}")
-
-        #     # Execute the generated code to create the chart
-        #     try:
-        #         # Ensure that the assistant's response is executable Python code
-        #         exec(response['content'])
-
-        #         # Display the generated chart in Streamlit
-        #         st.pyplot(fig)
-        #     except Exception as e:
-        #         st.error(f"An error occurred while executing the chart code: {e}")
-
-        #     # Display the plot in Streamlit
-        #     st.pyplot(fig)
-       
