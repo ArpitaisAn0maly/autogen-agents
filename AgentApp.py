@@ -105,18 +105,24 @@ with st.container():
         with st.chat_message("assistant"):
             st.markdown("Here is the assistant's response.")
          # If the input contains the word "chart", generate and display the chart
-        if "chart" in user_input.lower():
-            # Generate some mock data (you can replace this with actual data fetching logic)
-            categories = ['Category A', 'Category B', 'Category C', 'Category D', 'Category E']
-            values = np.random.randint(10, 100, size=5)
+         # Check if the input contains the word "chart" or related terms
+        if "chart" in user_input.lower() or "graph" in user_input.lower():
+            # Ask the assistant to generate a chart based on the user's input
+            response = await assistant.a_generate_response(f"Please generate a chart based on the following request: {user_input}")
 
-            # Create a plot
-            fig, ax = plt.subplots(figsize=(8, 6))
-            ax.bar(categories, values, color='skyblue', label='Values')
-            ax.set_title('Sample Chart')
-            ax.set_xlabel('Categories')
-            ax.set_ylabel('Values')
-            ax.legend()
+            # Display the assistant's generated code
+            with st.chat_message("assistant"):
+                st.markdown(f"Assistant's generated code:\n{response['content']}")
+
+            # Execute the generated code to create the chart
+            try:
+                # Ensure that the assistant's response is executable Python code
+                exec(response['content'])
+
+                # Display the generated chart in Streamlit
+                st.pyplot(fig)
+            except Exception as e:
+                st.error(f"An error occurred while executing the chart code: {e}")
 
             # Display the plot in Streamlit
             st.pyplot(fig)
