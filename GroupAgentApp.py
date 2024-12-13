@@ -80,9 +80,10 @@ if selected_key and selected_model and api_base_url:
             for msg in chat_messages:
                 role = msg['role']
                 content = msg['content']
+                name=msg['name']
 
                 # Display message with role and content clearly
-                st.markdown(f"### **{role} says:**")
+                st.markdown(f"### **{role} ({name}) says:**")
                 st.write(f"    {content}")
            
 
