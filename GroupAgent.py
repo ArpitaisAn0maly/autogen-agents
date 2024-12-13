@@ -59,19 +59,26 @@ if selected_key and selected_model and api_base_url:
 
     # Main container for chat
     with st.container():
-        user_input = st.text_input("Send a Message to the Group Chat Agent")
-        
-        if user_input:
-            async def interact_with_manager():
-                # User initiates the chat with the manager
-                await user_proxy.initiate_chat(
-                    manager=manager,
-                    message=user_input
-                )
+        user_input = st.text_input("Send a Message to the Group Chat Agent")          
 
+        # Create an event loop
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+
+        
+        # Define function to initiate chat
+        
+        async def initiate_chat():
+            await user_proxy.a_initiate_chat(
+                assistant,
+                message=user_input,
+        )
+
+         
            
-           
-            # Run the asynchronous function within the event loop
-            loop.run_until_complete(initiate_chat())
+
+        # Run the asynchronous function within the event loop
+        loop.run_until_complete(initiate_chat())
+      
 
 
