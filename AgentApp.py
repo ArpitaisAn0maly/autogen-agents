@@ -101,4 +101,20 @@ with st.container():
         # Display response in the chat
         with st.chat_message("assistant"):
             st.markdown("Here is the assistant's response.")
+         # If the input contains the word "chart", generate and display the chart
+        if "chart" in user_input.lower():
+            # Generate some mock data (you can replace this with actual data fetching logic)
+            categories = ['Category A', 'Category B', 'Category C', 'Category D', 'Category E']
+            values = np.random.randint(10, 100, size=5)
+
+            # Create a plot
+            fig, ax = plt.subplots(figsize=(8, 6))
+            ax.bar(categories, values, color='skyblue', label='Values')
+            ax.set_title('Sample Chart')
+            ax.set_xlabel('Categories')
+            ax.set_ylabel('Values')
+            ax.legend()
+
+            # Display the plot in Streamlit
+            st.pyplot(fig)
        
