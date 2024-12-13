@@ -77,8 +77,8 @@ if selected_key and selected_model and api_base_url:
             # Update the messages after the chat response
             chat_messages = groupchat.messages  # Get the updated messages from the group chat
 
-            for msg in chat_messages:
-                    st.write(f"**{msg['sender_name']}**: {msg['content']}")
+             for msg in chat_messages:
+                st.write(msg['message']) 
            
 
         # Run the asynchronous function within the event loop
