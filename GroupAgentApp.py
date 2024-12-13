@@ -50,7 +50,7 @@ if selected_key and selected_model and api_base_url:
         human_input_mode="TERMINATE",
     )
     coder = autogen.AssistantAgent(name="Coder", llm_config=llm_config)
-    # pdm = autogen.AssistantAgent(name="Product_manager", system_message="As a product manager, I focus on delivering valuable and innovative products. My goal is to align the team on customer needs, ensure effective collaboration across departments, and drive product strategy and roadmap execution.", llm_config=llm_config)
+    pdm = autogen.AssistantAgent(name="Product_manager", system_message="As a product manager, I focus on delivering valuable and innovative products. My goal is to align the team on customer needs, ensure effective collaboration across departments, and drive product strategy and roadmap execution.", llm_config=llm_config)
     pjm = autogen.AssistantAgent(name="Project_manager", system_message="As a project manager, I need everyone in my team to work faster and meet deadlines efficiently. Prioritize tasks and keep the workflow smooth.", llm_config=llm_config)
 
     # Initialize GroupChat and Manager
@@ -77,15 +77,15 @@ if selected_key and selected_model and api_base_url:
             # Update the messages after the chat response
             chat_messages = manager.groupchat.messages  # Get the updated messages from the group chat
 
-            # Debugging: Print the messages to check their structure
-            print(f"DEBUG: Total messages: {len(chat_messages)}")  # Print the total number of messages
-            for idx, msg in enumerate(chat_messages):
-                role = msg.get('role', 'Unknown')  # Use .get() to avoid KeyError if 'role' doesn't exist
-                content = msg.get('content', 'No content')  # Use .get() to avoid KeyError
-                name = msg.get('name', 'Unknown')  # Use .get() to avoid KeyError
+            # # Debugging: Print the messages to check their structure
+            # print(f"DEBUG: Total messages: {len(chat_messages)}")  # Print the total number of messages
+            # for idx, msg in enumerate(chat_messages):
+            #     role = msg.get('role', 'Unknown')  # Use .get() to avoid KeyError if 'role' doesn't exist
+            #     content = msg.get('content', 'No content')  # Use .get() to avoid KeyError
+            #     name = msg.get('name', 'Unknown')  # Use .get() to avoid KeyError
 
-                # Debugging: Print each message's role, content, and name
-                print(f"DEBUG: Message {idx} - Role: {role}, Name: {name}, Content: {content}")
+            #     # Debugging: Print each message's role, content, and name
+            #     print(f"DEBUG: Message {idx} - Role: {role}, Name: {name}, Content: {content}")
 
                 # Display message with role and content clearly
                 st.markdown(f"### **{role} ({name}) says:**")
