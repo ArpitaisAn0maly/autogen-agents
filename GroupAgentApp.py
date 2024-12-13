@@ -77,10 +77,15 @@ if selected_key and selected_model and api_base_url:
             # Update the messages after the chat response
             chat_messages = groupchat.messages  # Get the updated messages from the group chat
 
-            for msg in chat_messages:
-                role = msg['role']
-                content = msg['content']
-                name=msg['name']
+            # Debugging: Print the messages to check their structure
+            print(f"DEBUG: Total messages: {len(chat_messages)}")  # Print the total number of messages
+            for idx, msg in enumerate(chat_messages):
+                role = msg.get('role', 'Unknown')  # Use .get() to avoid KeyError if 'role' doesn't exist
+                content = msg.get('content', 'No content')  # Use .get() to avoid KeyError
+                name = msg.get('name', 'Unknown')  # Use .get() to avoid KeyError
+
+                # Debugging: Print each message's role, content, and name
+                print(f"DEBUG: Message {idx} - Role: {role}, Name: {name}, Content: {content}")
 
                 # Display message with role and content clearly
                 st.markdown(f"### **{role} ({name}) says:**")
