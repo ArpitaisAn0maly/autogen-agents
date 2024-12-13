@@ -77,7 +77,7 @@ with st.container():
             human_input_mode="NEVER", 
             llm_config=llm_config,
             code_execution_config=False,
-            max_consecutive_auto_reply=5,
+            max_consecutive_auto_reply=10,
             is_termination_msg=lambda x: x.get("content", "").rstrip().endswith("TERMINATE"))
 
         # Create an event loop
