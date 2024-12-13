@@ -75,7 +75,7 @@ if selected_key and selected_model and api_base_url:
         )
 
             # Update the messages after the chat response
-            chat_messages = groupchat.messages  # Get the updated messages from the group chat
+            chat_messages = manager.groupchat.messages  # Get the updated messages from the group chat
 
             # Debugging: Print the messages to check their structure
             print(f"DEBUG: Total messages: {len(chat_messages)}")  # Print the total number of messages
