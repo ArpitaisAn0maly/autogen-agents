@@ -2,6 +2,7 @@ import streamlit as st
 import asyncio
 from autogen import AssistantAgent, UserProxyAgent
 from openai import AzureOpenAI
+from autogen.coding import LocalCommandLineCodeExecutor
 
 import os
 os.environ["AUTOGEN_USE_DOCKER"] = "False"  # Disable Docker usage
