@@ -4,10 +4,7 @@ from autogen import AssistantAgent, UserProxyAgent
 from openai import AzureOpenAI
 
 import os
-
-
-
-os.environ["USE_DOCKER"] = "False"
+os.environ["AUTOGEN_USE_DOCKER"] = "False"  # Disable Docker usage
 
 # setup page title and description
 st.set_page_config(page_title="AutoGen Chat app", page_icon="🤖", layout="wide")
