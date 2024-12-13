@@ -5,10 +5,9 @@ from openai import AzureOpenAI
 
 import os
 
-from autogen.utils import update_code_execution_config
 
-# Update code execution config to disable Docker
-update_code_execution_config({"use_docker": False})
+
+os.environ["USE_DOCKER"] = "False"
 
 # setup page title and description
 st.set_page_config(page_title="AutoGen Chat app", page_icon="🤖", layout="wide")
