@@ -87,9 +87,9 @@ if selected_key and selected_model and api_base_url:
             #     # Debugging: Print each message's role, content, and name
             #     print(f"DEBUG: Message {idx} - Role: {role}, Name: {name}, Content: {content}")
 
-                # Display message with role and content clearly
-                st.markdown(f"### **{role} ({name}) says:**")
-                st.write(f"    {content}")
+            # Display message with role and content clearly
+            st.markdown(f"### **{role} ({name}) says:**")
+            st.write(f"    {content}")
            
 
         # Run the asynchronous function within the event loop
