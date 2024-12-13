@@ -63,44 +63,25 @@ with st.container():
             "seed": "42",  # seed for reproducibility
             "temperature": 0,  # temperature of 0 means deterministic output
         }
-        # create an AssistantAgent instance named "assistant"
-        assistant = TrackableAssistantAgent(name="assistant", llm_config=llm_config)
+         # create an AssistantAgent instance named "assistant"
+        assistant = TrackableAssistantAgent(
+            name="assistant", llm_config=llm_config)
 
         # create a UserProxyAgent instance named "user"
         user_proxy = TrackableUserProxyAgent(
-            name="user",
-            human_input_mode="NEVER",
-            llm_config=llm_config,
-            is_termination_msg=lambda x: x.get("content", "").strip().endswith("TERMINATE"),
-        )
+            name="user", human_input_mode="NEVER", llm_config=llm_config)
 
-        # Create an event loop: this is needed to run asynchronous functions
+        # Create an event loop
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
 
-        # Define an asynchronous function: this is needed to use await
-        if "chat_initiated" not in st.session_state:
-            st.session_state.chat_initiated = False  # Initialize the session state
+        # Define an asynchronous function
+        async def initiate_chat():
+            await user_proxy.a_initiate_chat(
+                assistant,
+                message=user_input,
+            )
 
-        if not st.session_state.chat_initiated:
-
-            async def initiate_chat():
-                await user_proxy.a_initiate_chat(
-                    assistant,
-                    message=user_input,
-                    max_consecutive_auto_reply=5,
-                    is_termination_msg=lambda x: x.get("content", "").strip().endswith("TERMINATE"),
-                )
-                st.stop()  # Stop code execution after termination command
-
-            # Run the asynchronous function within the event loop
-            loop.run_until_complete(initiate_chat())
-
-            # Close the event loop
-            loop.close()
-
-            st.session_state.chat_initiated = True  # Set the state to True after running the chat
-
-
-# stop app after termination command
-st.stop()
+        # Run the asynchronous function within the event loop
+        loop.run_until_complete(initiate_chat())
+       
