@@ -70,7 +70,7 @@ if selected_key and selected_model and api_base_url:
         
         async def initiate_chat():
             await user_proxy.a_initiate_chat(
-                assistant,
+                manager=manager,
                 message=user_input,
         )
 
