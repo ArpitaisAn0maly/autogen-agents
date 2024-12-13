@@ -76,7 +76,9 @@ with st.container():
             name="user",
             human_input_mode="NEVER", 
             llm_config=llm_config,
-            code_execution_config=False,
+            # code_execution_config=False,
+            code_execution_config={# the executor to run the generated code
+            "executor": LocalCommandLineCodeExecutor(work_dir="coding")},
             max_consecutive_auto_reply=10,
             is_termination_msg=lambda x: x.get("content", "").rstrip().endswith("TERMINATE"))
 
