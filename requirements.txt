@@ -2,3 +2,5 @@ streamlit
 openai
 pyautogen
 yfinance
+matplotlib
+pandas
