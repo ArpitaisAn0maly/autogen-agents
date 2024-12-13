@@ -55,7 +55,7 @@ with st.container():
         
         # setup request timeout and config list
         llm_config = {
-            "request_timeout": 600,
+            # "request_timeout": 600,
             "config_list": [
                 {"model": selected_model, 
                  "api_key": selected_key,
