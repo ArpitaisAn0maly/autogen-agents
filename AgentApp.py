@@ -16,10 +16,12 @@ st.markdown("Start by getting your AOAI Model details")
 selected_model = None
 selected_key = None
 api_base_url = None
+api_version = None
 
 # setup sidebar: models to choose from, API key input, and base URL input
 with st.sidebar:
     st.header("Azure OpenAI Configuration")
+    api_version = "2024-05-01-preview"
     selected_model = st.selectbox("Model", ["gpt4mini", "gpt4o"], index=1)
     selected_key = st.text_input("API Key", type="password")
     api_base_url = st.text_input("API Base URL", placeholder="https://<your-resource-name>.openai.azure.com/")
@@ -37,7 +39,10 @@ with st.container():
         llm_config = {
             "request_timeout": 600,
             "config_list": [
-                {"model": selected_model, "api_key": selected_key, "api_base": api_base_url},
+                {"model": selected_model, 
+                 "api_key": selected_key,
+                 "api_base": api_base_url,
+                "api_version": api_version},
             ],
             "seed": "42",  # seed for reproducibility
             "temperature": 0,  # temperature of 0 means deterministic output
