@@ -100,9 +100,9 @@ with st.container():
                 message=user_input,
         )
 
-             # Display assistant's response in the chat
-            with st.chat_message("assistant"):
-                st.markdown(response)
+            #  # Display assistant's response in the chat
+            # with st.chat_message("assistant"):
+            #     st.markdown(response)
            
 
         # Run the asynchronous function within the event loop
