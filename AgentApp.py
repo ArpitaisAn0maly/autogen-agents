@@ -63,7 +63,7 @@ with st.container():
                  "api_type": api_type,
                  "api_version": api_version},
             ],
-            "seed": "42",  # seed for reproducibility
+            # "seed": "42",  # seed for reproducibility
             "temperature": 0,  # temperature of 0 means deterministic output
         }
          # create an AssistantAgent instance named "assistant"
