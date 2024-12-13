@@ -72,7 +72,7 @@ with st.container():
 
         # create a UserProxyAgent instance named "user"
         user_proxy = TrackableUserProxyAgent(
-            name="user", human_input_mode="NEVER", llm_config=llm_config)
+            name="user", human_input_mode="NEVER", llm_config=llm_config,code_execution_config=False)
 
         # Create an event loop
         loop = asyncio.new_event_loop()
