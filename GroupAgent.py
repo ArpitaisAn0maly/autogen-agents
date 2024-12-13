@@ -70,14 +70,8 @@ if selected_key and selected_model and api_base_url:
                 )
 
            
-            # Run the asynchronous interaction
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
-            try:
-                loop.run_until_complete(interact_with_manager())
-            except Exception as e:
-                st.error(f"An error occurred: {str(e)}")
-            finally:
-                loop.close()
+           
+            # Run the asynchronous function within the event loop
+            loop.run_until_complete(initiate_chat())
 
 
