@@ -79,10 +79,10 @@ if selected_key and selected_model and api_base_url:
 
             # # Debugging: Print the messages to check their structure
             # print(f"DEBUG: Total messages: {len(chat_messages)}")  # Print the total number of messages
-            # for idx, msg in enumerate(chat_messages):
-            #     role = msg.get('role', 'Unknown')  # Use .get() to avoid KeyError if 'role' doesn't exist
-            #     content = msg.get('content', 'No content')  # Use .get() to avoid KeyError
-            #     name = msg.get('name', 'Unknown')  # Use .get() to avoid KeyError
+            for idx, msg in enumerate(chat_messages):
+                role = msg.get('role', 'Unknown')  # Use .get() to avoid KeyError if 'role' doesn't exist
+                content = msg.get('content', 'No content')  # Use .get() to avoid KeyError
+                name = msg.get('name', 'Unknown')  # Use .get() to avoid KeyError
 
             #     # Debugging: Print each message's role, content, and name
             #     print(f"DEBUG: Message {idx} - Role: {role}, Name: {name}, Content: {content}")
