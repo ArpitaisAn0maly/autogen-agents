@@ -54,7 +54,7 @@ if selected_key and selected_model and api_base_url:
     pjm = autogen.AssistantAgent(name="Project_manager", system_message="As a project manager, I need everyone in my team to work faster and meet deadlines efficiently. Prioritize tasks and keep the workflow smooth.", llm_config=llm_config)
 
     # Initialize GroupChat and Manager
-    groupchat = autogen.GroupChat(agents=[user_proxy,coder,pjm], messages=[], max_round=12)
+    groupchat = autogen.GroupChat(agents=[user_proxy,coder,pjm,pdm], messages=[], max_round=12)
     manager = autogen.GroupChatManager(groupchat=groupchat, llm_config=llm_config)
 
     # Main container for chat
