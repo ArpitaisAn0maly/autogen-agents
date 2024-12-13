@@ -64,7 +64,7 @@ with st.container():
                  "api_version": api_version},
             ],
             # "seed": "42",  # seed for reproducibility
-            "cache_seed": None,
+            "cache_seed": 42,
             "temperature": 0,  # temperature of 0 means deterministic output
         }
          # create an AssistantAgent instance named "assistant"
@@ -73,7 +73,12 @@ with st.container():
 
         # create a UserProxyAgent instance named "user"
         user_proxy = TrackableUserProxyAgent(
-            name="user", human_input_mode="NEVER", llm_config=llm_config,code_execution_config=False)
+            name="user",
+            human_input_mode="NEVER", 
+            llm_config=llm_config,
+            code_execution_config=False,
+            max_consecutive_auto_reply=5,
+            is_termination_msg=lambda x: x.get("content", "").rstrip().endswith("TERMINATE"))
 
         # Create an event loop
         loop = asyncio.new_event_loop()
