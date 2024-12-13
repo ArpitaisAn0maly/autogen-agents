@@ -118,7 +118,7 @@ with st.container():
         # Check if the input contains the word "chart" or related terms
             if "chart" in user_input.lower() or "graph" in user_input.lower():
                 # Ask the assistant to generate a chart based on the user's input
-                response = await assistant.a_generate_response(f"Please generate a chart based on the following request: {user_input}")
+                response = await assistant.a_generate_reply(f"Please generate a chart based on the following request: {user_input}")
     
                 # Display the assistant's generated code
                 with st.chat_message("assistant"):
