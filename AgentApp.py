@@ -94,9 +94,11 @@ with st.container():
         
         # Define function to initiate chat
         
-        async def initiate_chat():
-            # Simulate the chat interaction, assistant generates a chart
-            message = await assistant.chat(user_input)
+         async def initiate_chat():
+            await user_proxy.a_initiate_chat(
+                assistant,
+                message=user_input,
+            )
 
              # Display assistant's response in the chat
             with st.chat_message("assistant"):
