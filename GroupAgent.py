@@ -69,10 +69,15 @@ if selected_key and selected_model and api_base_url:
                     message=user_input
                 )
 
-            # Run asynchronous group chat processing
+           
+            # Run the asynchronous interaction
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
-            loop.run_until_complete(process_group_chat())
+            try:
+                loop.run_until_complete(interact_with_manager())
+            except Exception as e:
+                st.error(f"An error occurred: {str(e)}")
+            finally:
+                loop.close()
 
-else:
-    st.warning("Please provide API configuration details in the sidebar.", icon="⚠️")
+
