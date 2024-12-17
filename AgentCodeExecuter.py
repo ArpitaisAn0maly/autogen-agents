@@ -36,8 +36,7 @@ class TrackableAssistantAgent(AssistantAgent):
                 code_block = extract_code_block(message)
                 if code_block:
                     try:
-                        # Create a new figure for each chart
-                        plt.figure()
+                       
                         # Execute the chart code
                         exec(code_block)
                         # Display the chart in Streamlit
