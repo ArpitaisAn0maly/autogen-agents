@@ -24,6 +24,11 @@ This repository demonstrates the use of Microsoft's **Autogen Framework** for cr
 - **Streamlit**: For building interactive web apps.  
 - **Microsoft Autogen Framework**: Framework for creating, managing, and orchestrating AI agents.
 
+## Hosting on Streamlit Cloud
+
+You can easily host your Streamlit app on **Streamlit Cloud** by connecting your GitHub repository. Once deployed, your app will be accessible online without the need to run it locally. Visit [Streamlit Cloud](https://streamlit.io/cloud) for more details on how to deploy your app directly from GitHub.
+
+
 # Project Setup and Instructions
 
 ## Installation and Setup
@@ -56,8 +61,5 @@ streamlit run app.py
 streamlit run AgentApp.py
 streamlit run GroupAgentApp.py
 
-### Hosting on Streamlit Cloud
-
-You can easily host your Streamlit app on **Streamlit Cloud** by connecting your GitHub repository. Once deployed, your app will be accessible online without the need to run it locally. Visit [Streamlit Cloud](https://streamlit.io/cloud) for more details on how to deploy your app directly from GitHub.
 
 
