@@ -40,7 +40,7 @@ class TrackableAssistantAgent(AssistantAgent):
                         exec(code_block)
                         # Display the chart in Streamlit
                         st.pyplot(plt.gcf())
-                        plt.clf()  # Clear the current figure to avoid overlaps
+                        # plt.clf()  # Clear the current figure to avoid overlaps
                     except Exception as e:
                         st.error(f"Error executing chart code: {e}")
             else:
