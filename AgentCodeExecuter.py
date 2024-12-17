@@ -31,22 +31,23 @@ def extract_code_block(message):
   
 class TrackableAssistantAgent(AssistantAgent):
     def _process_received_message(self, message, sender, silent):
-        if "```python" in message:
-            code_block = extract_code_block(message)
-            if code_block:
-                try:
-                    # Execute the chart code
-                    exec(code_block)
-                    # Display the chart in Streamlit
-                    st.pyplot(plt.gcf())
-                    plt.clf()  # Clear the current figure to avoid overlaps
-                except Exception as e:
-                    st.error(f"Error executing chart code: {e}")
-        else:
-            # Display regular messages
-            with st.chat_message(sender.name):
-                st.markdown(message)
-        return super()._process_received_message(message, sender, silent)
+        if any(keyword in message.lower() for keyword in ["graph", "visualize", "plot"]):
+            if "```python" in message:
+                code_block = extract_code_block(message)
+                if code_block:
+                    try:
+                        # Execute the chart code
+                        exec(code_block)
+                        # Display the chart in Streamlit
+                        st.pyplot(plt.gcf())
+                        plt.clf()  # Clear the current figure to avoid overlaps
+                    except Exception as e:
+                        st.error(f"Error executing chart code: {e}")
+            else:
+                # Display regular messages
+                with st.chat_message(sender.name):
+                    st.markdown(message)
+            return super()._process_received_message(message, sender, silent)
 
 
 class TrackableUserProxyAgent(UserProxyAgent):
