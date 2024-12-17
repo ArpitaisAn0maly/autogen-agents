@@ -42,11 +42,11 @@ class TrackableAssistantAgent(AssistantAgent):
                     plt.clf()  # Clear the current figure to avoid overlaps
                 except Exception as e:
                     st.error(f"Error executing chart code: {e}")
-        else:
+      else:
             # Display regular messages
             with st.chat_message(sender.name):
                 st.markdown(message)
-        return super()._process_received_message(message, sender, silent)
+      return super()._process_received_message(message, sender, silent)
 
 
 class TrackableUserProxyAgent(UserProxyAgent):
