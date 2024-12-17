@@ -36,11 +36,13 @@ class TrackableAssistantAgent(AssistantAgent):
                 code_block = extract_code_block(message)
                 if code_block:
                     try:
+                        # Create a new figure for each chart
+                        plt.figure()
                         # Execute the chart code
                         exec(code_block)
                         # Display the chart in Streamlit
                         st.pyplot(plt.gcf())
-                        # plt.clf()  # Clear the current figure to avoid overlaps
+                        plt.clf()  # Clear the current figure to avoid overlaps
                     except Exception as e:
                         st.error(f"Error executing chart code: {e}")
             else:
