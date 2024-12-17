@@ -31,7 +31,7 @@ def extract_code_block(message):
   
 class TrackableAssistantAgent(AssistantAgent):
     def _process_received_message(self, message, sender, silent):
-       if "```python" in message:
+        if "```python" in message:
             code_block = extract_code_block(message)
             if code_block:
                 try:
@@ -42,11 +42,11 @@ class TrackableAssistantAgent(AssistantAgent):
                     plt.clf()  # Clear the current figure to avoid overlaps
                 except Exception as e:
                     st.error(f"Error executing chart code: {e}")
-      else:
+        else:
             # Display regular messages
             with st.chat_message(sender.name):
                 st.markdown(message)
-      return super()._process_received_message(message, sender, silent)
+        return super()._process_received_message(message, sender, silent)
 
 
 class TrackableUserProxyAgent(UserProxyAgent):
